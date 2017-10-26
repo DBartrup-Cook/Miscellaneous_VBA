@@ -3,7 +3,6 @@ Option Explicit
 
 '---------------------------------------------------------------------------------------
 ' Procedure : GetFileSize
-' Author    : Darren Bartrup-Cook
 ' Date      : 04/04/2014
 ' Purpose   : Returns the size of the file in bytes.
 '             Returns -1 if the file doesn't exist.
