@@ -4,7 +4,7 @@ Option Explicit
 'http://www.tek-tips.com/faqs.cfm?fid=5749
 'BobStubbs 13/03/05
 
-Public Function ProperCase(strOneLine As String, intChangeType As Integer) As String
+Public Function ProperCase(strOneLine As String, Optional intChangeType As Integer = 0) As String
 
 '---------------------------------------------------------------
 '- This function will convert a string to Proper Case          -
