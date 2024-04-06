@@ -71,10 +71,12 @@ Public Function BankHolidays(lYear As Long) As Collection
     colTemp.Add dTemp, "SummerBankHoliday"
     
     'Christmas Day
-    'Records 25th as BH and following Monday if Christmas is at the weekend.
+    'Records 25th as BH.
+    'If 25th is Saturday, then following Monday is BH.
+    'If 25th is Sunday, then following Tuesday is BH.
     dDateInQuestion = DateSerial(lYear, 12, 25)
     If Weekday(dDateInQuestion, vbMonday) >= 6 Then
-        dTemp = dDateInQuestion + 8 - Weekday(dDateInQuestion, vbMonday)
+        dTemp = dDateInQuestion + 8 - Weekday(dDateInQuestion, Weekday(dDateInQuestion, vbMonday) - 4)
         colTemp.Add dTemp, "ChristmasDay"
     Else
         colTemp.Add dDateInQuestion, "ChristmasDay"
@@ -85,11 +87,8 @@ Public Function BankHolidays(lYear As Long) As Collection
     'If 26th is Saturday, then following Monday is BH.
     'If 26th is Sunday, then following Tuesday is BH.
     dDateInQuestion = DateSerial(lYear, 12, 26)
-    If Weekday(dDateInQuestion, vbMonday) = 6 Then
-        dTemp = dDateInQuestion + 8 - Weekday(dDateInQuestion, vbMonday)
-        colTemp.Add dTemp, "BoxingDay"
-    ElseIf Weekday(dDateInQuestion, vbMonday) = 7 Then
-        dTemp = dDateInQuestion + 9 - Weekday(dDateInQuestion, vbMonday)
+    If Weekday(dDateInQuestion, vbMonday) >= 6 Then
+        dTemp = dDateInQuestion + 8 - Weekday(dDateInQuestion, Weekday(dDateInQuestion, vbMonday) - 4)
         colTemp.Add dTemp, "BoxingDay"
     Else
         colTemp.Add dDateInQuestion, "BoxingDay"
